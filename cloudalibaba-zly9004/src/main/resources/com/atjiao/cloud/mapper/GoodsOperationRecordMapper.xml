@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atjiao.cloud.mapper.GoodsOperationRecordMapper">
+
+    <resultMap id="BaseResultMap" type="com.atjiao.cloud.domain.GoodsOperationRecord">
+            <id property="id" column="id" />
+            <result property="goodsId" column="goods_id" />
+            <result property="usreId" column="usre_id" />
+            <result property="operationType" column="operation_type" />
+            <result property="operationInfo" column="operation_info" />
+            <result property="note" column="note" />
+            <result property="createTime" column="create_time" />
+            <result property="createBy" column="create_by" />
+            <result property="updateTime" column="update_time" />
+            <result property="updtaeBy" column="updtae_by" />
+            <result property="delFlag" column="del_flag" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,goods_id,usre_id,operation_type,operation_info,note,
+        create_time,create_by,update_time,updtae_by,del_flag
+    </sql>
+</mapper>

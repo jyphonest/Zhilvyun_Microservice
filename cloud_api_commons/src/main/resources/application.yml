@@ -1,0 +1,325 @@
+# ======================== 通用配置文件 ========================
+# 此文件包含AI旅游云平台所有微服务模块的通用配置
+# 包括：Sa-Token认证、Spring Security安全、数据库配置、MyBatis-Plus配置、日志配置等
+
+# ======================== Sa-Token配置 ========================
+# Sa-Token配置
+sa-token:
+  # token名称 (同时也是cookie名称)
+  token-name: Authorization
+  # token有效期 设为一天 (必定过期) 单位: 秒 86400-1d，1296000-15d，2592000-30d
+  timeout: 1296000
+  # 多端不同 token 有效期 可查看 LoginHelper.loginByDevice 方法自定义
+  # token最低活跃时间 (指定时间无操作就过期) 单位: 秒
+  active-timeout: 1296000
+  # 允许动态设置 token 有效期
+  dynamic-active-timeout: true
+  # 是否允许同一账号并发登录 (为true时允许一起登录, 为false时新登录挤掉旧登录)
+  is-concurrent: false
+  # 在多人登录同一账号时，是否共用一个token (为true时所有登录共用一个token, 为false时每次登录新建一个token)
+  is-share: false
+  # 是否尝试从header里读取token
+  is-read-header: true
+  # 是否尝试从cookie里读取token
+  is-read-cookie: false
+  # token前缀
+  token-prefix: "Bearer"
+  # jwt秘钥
+  jwt-secret-key: abcdefghijklmnopqrstuvwxyz
+  #tiken生成策略
+  token-style: random-64
+
+# ======================== Spring Security配置 ========================
+security:
+  # 排除路径
+  excludes:
+    # 静态资源
+    - /*.html
+    - /**/*.html
+    - /**/*.css
+    - /**/*.js
+    # 公共路径
+    - /favicon.ico
+    - /error
+    # swagger 文档配置
+    - /*/api-docs
+    - /*/api-docs/**
+    # actuator 监控配置
+    - /actuator
+    - /actuator/**
+    # 登录注册相关
+    - /auth/login
+    - /auth/register
+    - /auth/logout
+    # 健康检查
+    - /health
+    - /health/**
+    # 测试接口
+    - /test/**
+    # Druid监控
+    - /druid/**
+    # 文件上传
+    - /upload/**
+    - /file/**
+
+# ======================== 数据库配置 ========================
+spring:
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zhilvyun_jiaoyp?useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&useSSL=false&autoReconnect=true&failOverReadOnly=false
+    username: root
+    password: 123456
+    # Druid连接池配置
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      # 初始连接数
+      initial-size: 5
+      # 最小连接池数量
+      min-idle: 5
+      # 最大连接池数量
+      max-active: 20
+      # 获取连接等待超时时间
+      max-wait: 60000
+      # 检测间隔时间
+      time-between-eviction-runs-millis: 60000
+      # 连接最小生存时间
+      min-evictable-idle-time-millis: 300000
+      # 连接最大生存时间
+      max-evictable-idle-time-millis: 900000
+      # 检测连接是否有效
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 是否缓存preparedStatement
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置监控统计拦截的filters
+      filters: stat,wall,slf4j
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 配置DruidStatFilter
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
+      # 配置DruidStatViewServlet
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+        login-username: admin
+        login-password: 123456
+        allow: ""
+        deny: ""
+  
+  # Redis配置
+  redis:
+    host: localhost
+    port: 6379
+    password: 
+    database: 0
+    timeout: 10000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    # 序列化配置
+    jackson:
+      default-property-inclusion: non_null
+      time-zone: GMT+8
+      date-format: yyyy-MM-dd HH:mm:ss
+
+# ======================== MyBatis-Plus配置 ========================
+mybatis-plus:
+  # 搜索指定包别名
+  type-aliases-package: com.atjiao.cloud.entity
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  configuration:
+    # 开启驼峰命名
+    map-underscore-to-camel-case: true
+    # 开启缓存
+    cache-enabled: true
+    # 打印SQL语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    # 延迟加载
+    lazy-loading-enabled: true
+    # 积极延迟加载
+    aggressive-lazy-loading: false
+    # 自动映射
+    auto-mapping-behavior: partial
+    # 自动映射未知列
+    auto-mapping-unknown-column-behavior: warning
+    # 默认执行器
+    default-executor-type: simple
+    # 默认语句超时时间
+    default-statement-timeout: 25
+    # 默认获取结果集超时时间
+    default-fetch-size: 100
+    # 安全行边界
+    safe-row-bounds-enabled: false
+    # 安全结果处理
+    safe-result-handler-enabled: true
+    # 多结果集处理
+    multiple-result-sets-enabled: true
+    # 使用列标签
+    use-column-label: true
+    # 允许JDBC支持自动生成主键
+    use-generated-keys: true
+    # 本地缓存机制
+    local-cache-scope: session
+    # 设置但JDBC类型为空时,某些驱动程序要指定值
+    jdbc-type-for-null: other
+    # 设置触发延迟加载的方法
+    lazy-load-trigger-methods: equals,clone,hashCode,toString
+  global-config:
+    db-config:
+      # 主键类型
+      id-type: auto
+      # 逻辑删除配置
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      # 插入策略
+      insert-strategy: not_null
+      # 更新策略
+      update-strategy: not_null
+      # 查询策略
+      select-strategy: not_empty
+  # 自定义TypeHandler包路径
+  type-handlers-package: com.atjiao.cloud.config.handler
+
+# ======================== 日志配置 ========================
+logging:
+  level:
+    com.atjiao.cloud: debug
+    com.baomidou.mybatisplus: debug
+    org.springframework.web: debug
+    org.springframework.security: debug
+    cn.dev33.satoken: debug
+    com.alibaba.druid: debug
+    io.seata: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"
+  file:
+    name: ${java.io.tmpdir}/logs/ai-tourism-cloud.log
+    max-size: 100MB
+    max-history: 30
+
+# ======================== 管理端点配置 ========================
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    info:
+      enabled: true
+    metrics:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+# ======================== 文件上传配置 ========================
+file:
+  upload:
+    # 上传路径
+    path: /upload/
+    # 最大文件大小
+    max-size: 10MB
+    # 允许的文件类型
+    allowed-types: jpg,jpeg,png,gif,pdf,doc,docx,xls,xlsx
+    # 是否使用OSS
+    use-oss: false
+
+# ======================== 阿里云OSS配置 ========================
+aliyun:
+  oss:
+    end-point: oss-cn-beijing.aliyuncs.com
+    access-key-id: ${ALIBABA_ACCESS_KEY}
+    access-key-secret: ${ALIBABA_SECRET_KEY}
+    bucket-name: zhilvyun
+    # 文件访问域名
+    domain: https://zhilvyun.oss-cn-beijing.aliyuncs.com
+    # 文件存储路径
+    path: ai-tourism/
+  sms:
+    access-key-id: ${ALIBABA_ACCESS_KEY}
+    access-key-secret: ${ALIBABA_SECRET_KEY}
+    sign-name: 验证码短信
+    template-code: SMS_317165888
+    endpoint: dypnsapi.aliyuncs.com
+
+# ======================== 业务配置 ========================
+business:
+  # 旅游计划相关配置
+  travel:
+    # 最大计划数量
+    max-plan-count: 100
+    # 最大攻略长度
+    max-strategy-length: 10000
+    # 默认预算
+    default-budget: 5000
+    # 默认天数
+    default-days: 7
+  # 用户相关配置
+  user:
+    # 密码最小长度
+    password-min-length: 6
+    # 密码最大长度
+    password-max-length: 20
+    # 用户名最小长度
+    username-min-length: 3
+    # 用户名最大长度
+    username-max-length: 20
+    # 邮箱验证码有效期(分钟)
+    email-code-expire: 5
+    # 手机验证码有效期(分钟)
+    phone-code-expire: 5
+
+# ======================== 缓存配置 ========================
+cache:
+  # 默认缓存时间(秒)
+  default-ttl: 3600
+  # 用户信息缓存时间(秒)
+  user-ttl: 1800
+  # 旅游计划缓存时间(秒)
+  travel-plan-ttl: 7200
+  # 验证码缓存时间(秒)
+  code-ttl: 300
+
+# ======================== 线程池配置 ========================
+thread:
+  pool:
+    # 核心线程数
+    core-size: 10
+    # 最大线程数
+    max-size: 20
+    # 队列容量
+    queue-capacity: 200
+    # 线程空闲时间(秒)
+    keep-alive: 60
+    # 线程名前缀
+    name-prefix: ai-tourism-
+
+# ======================== 跨域配置 ========================
+cors:
+  # 允许的域名
+  allowed-origins: "*"
+  # 允许的方法
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  # 允许的请求头
+  allowed-headers: "*"
+  # 是否允许携带凭证
+  allow-credentials: true
+  # 预检请求的有效期(秒)
+  max-age: 3600

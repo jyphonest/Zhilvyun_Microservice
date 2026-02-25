@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 全局配置 -->
+    <settings>
+        <!-- 开启驼峰命名转换 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!-- 开启缓存 -->
+        <setting name="cacheEnabled" value="true"/>
+        <!-- 延迟加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 积极延迟加载 -->
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <!-- 自动映射 -->
+        <setting name="autoMappingBehavior" value="PARTIAL"/>
+        <!-- 自动映射未知列 -->
+        <setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+        <!-- 默认执行器 -->
+        <setting name="defaultExecutorType" value="SIMPLE"/>
+        <!-- 默认语句超时时间 -->
+        <setting name="defaultStatementTimeout" value="25"/>
+        <!-- 默认获取结果集超时时间 -->
+        <setting name="defaultFetchSize" value="100"/>
+        <!-- 安全行边界 -->
+        <setting name="safeRowBoundsEnabled" value="false"/>
+        <!-- 安全结果处理 -->
+        <setting name="safeResultHandlerEnabled" value="true"/>
+        <!-- 多结果集处理 -->
+        <setting name="multipleResultSetsEnabled" value="true"/>
+        <!-- 使用列标签 -->
+        <setting name="useColumnLabel" value="true"/>
+        <!-- 允许JDBC支持自动生成主键 -->
+        <setting name="useGeneratedKeys" value="true"/>
+        <!-- 本地缓存机制 -->
+        <setting name="localCacheScope" value="SESSION"/>
+        <!-- 设置但JDBC类型为空时,某些驱动程序要指定值 -->
+        <setting name="jdbcTypeForNull" value="OTHER"/>
+        <!-- 设置触发延迟加载的方法 -->
+        <setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>
+    </settings>
+
+    <!-- 类型处理器 -->
+    <typeHandlers>
+        <!-- 自定义List<String>类型处理器 -->
+        <typeHandler handler="com.atjiao.cloud.config.handler.ListTypeHandler" 
+                     javaType="java.util.List" 
+                     jdbcType="VARCHAR"/>
+    </typeHandlers>
+</configuration> 

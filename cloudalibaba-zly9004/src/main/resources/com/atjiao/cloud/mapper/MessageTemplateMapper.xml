@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atjiao.cloud.mapper.MessageTemplateMapper">
+
+    <resultMap id="BaseResultMap" type="com.atjiao.cloud.domain.MessageTemplate">
+            <id property="id" column="id" />
+            <result property="title" column="title" />
+            <result property="content" column="content" />
+            <result property="messageTypeId" column="message_type_id" />
+            <result property="templateType" column="template_type" />
+            <result property="version" column="version" />
+            <result property="attachmentUrl" column="attachment_url" />
+            <result property="type" column="type" />
+            <result property="createBy" column="create_by" />
+            <result property="createTime" column="create_time" />
+            <result property="updateBy" column="update_by" />
+            <result property="updateTime" column="update_time" />
+            <result property="delFlag" column="del_flag" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,title,content,message_type_id,template_type,version,
+        attachment_url,type,create_by,create_time,update_by,
+        update_time,del_flag
+    </sql>
+</mapper>

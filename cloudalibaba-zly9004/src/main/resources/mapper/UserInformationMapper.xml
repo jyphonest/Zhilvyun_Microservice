@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atjiao.cloud.mapper.UserInformationMapper">
+
+    <resultMap id="BaseResultMap" type="com.atjiao.cloud.domain.UserInformation">
+            <id property="id" column="id" />
+            <result property="accountNumber" column="Account_number" />
+            <result property="password" column="password" />
+            <result property="currentBalance" column="Current_balance" />
+            <result property="cumulativeRecharge" column="Cumulative_recharge" />
+            <result property="vipOrNot" column="VIP_or_not" />
+            <result property="avatar" column="Avatar" />
+            <result property="authority" column="authority" />
+            <result property="email" column="email" />
+            <result property="integral" column="integral" />
+            <result property="fullName" column="full_name" />
+            <result property="createBy" column="create_by" />
+            <result property="createTime" column="create_time" />
+            <result property="updateBy" column="update_by" />
+            <result property="updateTime" column="update_time" />
+            <result property="delFlag" column="del_flag" />
+            <result property="status" column="status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,Account_number,password,Current_balance,Cumulative_recharge,VIP_or_not,
+        Avatar,authority,email,integral,full_name,
+        create_by,create_time,update_by,update_time,del_flag,status
+    </sql>
+
+    <select id="getAuthorityByUserId" resultType="java.lang.String">
+            select authority from user_information where id = #{id}
+    </select>
+
+</mapper>

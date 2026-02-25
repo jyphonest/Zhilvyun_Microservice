@@ -1,0 +1,29 @@
+server:
+  port: 83
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zhilvyun_jiaoyp
+    username: root
+    password: 123456
+  application:
+    name: nacos-order-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+#消费者将要去访问的微服务名称(nacos微服务提供者叫什么你写什么)
+service-url:
+  nacos-user-service: http://nacos-payment-provider
+feign:
+  sentinel:
+    enabled: true
+# 阿里云OSS配置
+aliyun:
+  oss:
+    end-point: oss-cn-beijing.aliyuncs.com
+    access-key-id: ${ALIBABA_ACCESS_KEY}
+    access-key-secret: ${ALIBABA_SECRET_KEY}
+    bucket-name: zhilvyun
+

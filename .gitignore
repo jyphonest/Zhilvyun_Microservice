@@ -1,0 +1,44 @@
+# 基础编译/构建产物
+target/
+dist/
+build/
+*.jar
+*.war
+
+# 日志文件
+*.log
+logs/
+**/*.log.*
+
+# 中间件运行时数据（关键）
+cloudalibaba-zly9004/nacos/data/
+cloudalibaba-zly9004/nacos/logs/
+cloudalibaba-zly9004/mysql/data/
+cloudalibaba-zly9004/rabbitmq/data/
+*.sock  # 全局忽略所有.sock文件
+
+# Allure测试报告（无需跟踪）
+.allure/
+allure-report/
+allure-results/
+
+# Maven/Gradle 缓存
+.mvn/
+gradle/
+gradlew
+gradlew.bat
+
+# IDE配置文件（可选，避免IDE配置冲突）
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+
+# 忽略 Windows 特殊设备文件名
+nul
+con
+prn
+aux
+com1
+lpt1

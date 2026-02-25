@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atjiao.cloud.mapper.TravelPlanMapper">
+
+    <resultMap id="BaseResultMap" type="com.atjiao.cloud.domain.TravelPlan">
+            <id property="id" column="id" />
+            <result property="userId" column="user_id" />
+            <result property="planTitle" column="plan_title" />
+            <result property="departure" column="departure" />
+            <result property="destination" column="destination" />
+            <result property="budget" column="budget" />
+            <result property="rating" column="rating" />
+            <result property="startTime" column="start_time" />
+            <result property="endTime" column="end_time" />
+            <result property="summarize" column="summarize" />
+            <result property="travelStatus" column="travel_status" />
+            <result property="kindTips" column="kind_tips" />
+            <result property="likeCount" column="like_count" />
+            <result property="collection" column="collection" />
+            <result property="pageViews" column="page_views" />
+            <result property="headimg" column="headImg" />
+            <result property="createBy" column="create_by" />
+            <result property="createTime" column="create_time" />
+            <result property="updateBy" column="update_by" />
+            <result property="updateTime" column="update_time" />
+            <result property="delFlag" column="del_flag" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,plan_title,departure,destination,budget,
+        rating,start_time,end_time,summarize,travel_status,kind_tips,
+        like,collection,page_views,headImg,create_by,create_time,
+        update_by,update_time,del_flag
+    </sql>
+</mapper>

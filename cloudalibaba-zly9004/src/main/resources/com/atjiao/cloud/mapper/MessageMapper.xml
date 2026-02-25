@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atjiao.cloud.mapper.MessageMapper">
+
+    <resultMap id="BaseResultMap" type="com.atjiao.cloud.domain.SysMessage">
+            <id property="id" column="id" />
+            <result property="title" column="title" />
+            <result property="content" column="content" />
+            <result property="senderId" column="sender_id" />
+            <result property="pushScope" column="push_scope" />
+            <result property="messageTypeId" column="message_type_id" />
+            <result property="pushTime" column="push_time" />
+            <result property="pushStatus" column="push_status" />
+            <result property="expireTime" column="expire_time" />
+            <result property="effectiveTime" column="effective_time" />
+            <result property="type" column="type" />
+            <result property="createBy" column="create_by" />
+            <result property="createTime" column="create_time" />
+            <result property="updateBy" column="update_by" />
+            <result property="updateTime" column="update_time" />
+            <result property="delFlag" column="del_flag" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,title,content,sender_id,push_scope,message_type_id,
+        push_time,push_status,type,expire_time,effective_time,create_by,create_time,
+        update_by,update_time,del_flag
+    </sql>
+</mapper>

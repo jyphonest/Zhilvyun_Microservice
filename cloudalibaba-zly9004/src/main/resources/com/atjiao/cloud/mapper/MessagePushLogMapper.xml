@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atjiao.cloud.mapper.MessagePushLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.atjiao.cloud.domain.MessagePushLog">
+            <id property="id" column="id" />
+            <result property="messageId" column="message_id" />
+            <result property="pushScope" column="push_scope" />
+            <result property="targetCount" column="target_count" />
+            <result property="successCount" column="success_count" />
+            <result property="failCount" column="fail_count" />
+            <result property="failReason" column="fail_reason" />
+            <result property="operatorId" column="operator_id" />
+            <result property="pushTime" column="push_time" />
+            <result property="createBy" column="create_by" />
+            <result property="createTime" column="create_time" />
+            <result property="updateBy" column="update_by" />
+            <result property="updateTime" column="update_time" />
+            <result property="delFlag" column="del_flag" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,message_id,push_scope,target_count,success_count,fail_count,
+        fail_reason,operator_id,push_time,create_by,create_time,
+        update_by,update_time,del_flag
+    </sql>
+</mapper>

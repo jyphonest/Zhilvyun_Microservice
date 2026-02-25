@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atjiao.cloud.mapper.ChatSessionsMapper">
+
+    <resultMap id="BaseResultMap" type="com.atjiao.cloud.domain.ChatSessions">
+            <id property="sessionId" column="session_id" />
+            <result property="userId" column="user_id" />
+            <result property="staffId" column="staff_id" />
+            <result property="status" column="status" />
+            <result property="startTime" column="start_time" />
+            <result property="endTime" column="end_time" />
+            <result property="lastMessageId" column="last_message_id" />
+            <result property="createBy" column="create_by" />
+            <result property="createTime" column="create_time" />
+            <result property="updateBy" column="update_by" />
+            <result property="updateTime" column="update_time" />
+            <result property="delFlag" column="del_flag" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        session_id,user_id,staff_id,status,start_time,end_time,
+        last_message_id,create_by,create_time,update_by,update_time,
+        del_flag
+    </sql>
+</mapper>
